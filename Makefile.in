@@ -1,0 +1,19 @@
+
+# prefix = something will be inserted here
+
+bindir = ${prefix}/bin
+
+MKDIR_P = /bin/mkdir -p
+
+.PHONY:all
+all:
+	sh scripts/build.sh
+
+.PHONY:install
+install:
+	$(MKDIR_P) "$(DESTDIR)$(bindir)"
+	install -m 755 gdid "$(DESTDIR)$(bindir)"
+
+.PHONY:clean
+clean:
+	rm -f gdid

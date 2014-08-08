@@ -1,0 +1,18 @@
+#! /usr/bin/sbcl --script
+
+(defun string-starts-with (string prefix)
+  (eql 0 (search prefix string)))
+
+(defun prefix ()
+  (let ((arg (find-if (lambda (string) (string-starts-with string "--prefix="))
+                      sb-ext:*posix-argv*)))
+    (if arg
+        (subseq arg 9)
+        "/usr/local")))
+
+(with-open-file (out "Makefile" :direction :output :if-exists :supersede)
+  (format out "prefix = ~A~%" (prefix))
+  (with-open-file (in "Makefile.in")
+    (loop for line = (read-line in nil)
+          while line
+          do (write-line line out))))
