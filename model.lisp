@@ -2,8 +2,9 @@
 
 (in-package #:gdid.model)
 
-(defvar *root-dir* (merge-pathnames #p".emacs.d/var/muse/"
-                                    (user-homedir-pathname)))
+(defun root-dir ()
+  (merge-pathnames #p".emacs.d/var/muse/"
+                   (user-homedir-pathname)))
 
 (defun relative-directory (name)
   (make-pathname :directory `(:relative ,name)))
@@ -61,7 +62,7 @@
 
 ;;; collection
 (defun find-collection (name &optional (errorp t))
-  (let ((*default-pathname-defaults* *root-dir*))
+  (let ((*default-pathname-defaults* (root-dir)))
     (or (probe-file (relative-directory (string-upcase name)))
         (probe-file (relative-directory (string-downcase name)))
         (find name (directory (relative-directory :wild))
