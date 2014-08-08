@@ -2,6 +2,8 @@
 
 (in-package #:gdid)
 
+(sb-ext:add-package-local-nickname "M" "GDID.MODEL")
+
 (defvar *default-collection* "GDID")
 
 (defvar *commands* nil)
