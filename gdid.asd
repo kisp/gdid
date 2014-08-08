@@ -10,9 +10,12 @@
   :maintainer "Kilian Sprotte <kilian.sprotte@gmail.com>"
   :author "Kilian Sprotte <kilian.sprotte@gmail.com>"
   :licence "BSD-style"
-  :depends-on (:alexandria)
+  :depends-on (:alexandria :hgetopt)
   :serial t
-  :components ((:file "gdid")))
+  :components ((:file "packages")
+               (:file "utils")
+               (:file "gdid")
+               (:file "commands")))
 
 (defmethod perform ((op test-op)
                     (system (eql (find-system :gdid))))
