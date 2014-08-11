@@ -16,7 +16,8 @@
    #:list-collection
    #:item-index
    #:collection-max-index
-   #:collection-new-item))
+   #:collection-new-item
+   #:collection-name))
 
 (defpackage #:gdid
   (:use :cl :hgetopt :gdid.model)

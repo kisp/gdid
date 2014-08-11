@@ -29,8 +29,10 @@
                 (&key (collection *default-collection*)
                       multiple)
                 (query &optional file)
-  (format t "NOT IMPL this would perform pdf ~S~%"
-          (list collection multiple query file)))
+  (flet ((pdf-item (item)
+           (generate-pdf item (or file *standard-output*))))
+    (let ((collection (find-collection collection)))
+      (collection-single! #'pdf-item collection query))))
 
 (define-command (com-edit :cli-name "edit")
                 (&key (collection *default-collection*)

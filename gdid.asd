@@ -10,11 +10,13 @@
   :maintainer "Kilian Sprotte <kilian.sprotte@gmail.com>"
   :author "Kilian Sprotte <kilian.sprotte@gmail.com>"
   :licence "BSD-style"
-  :depends-on (:alexandria :hgetopt :cl-ppcre)
+  :depends-on (:alexandria :hgetopt :cl-ppcre
+                           :cl-pdf :cl-typesetting)
   :serial t
   :components ((:file "packages")
                (:file "model")
                (:file "utils")
+               (:file "pdf")
                (:file "gdid")
                (:file "commands")))
 
