@@ -12,7 +12,11 @@
    #:do-collection
    #:item-index-as-string
    #:item-short-content
-   #:item-content))
+   #:item-content
+   #:list-collection
+   #:item-index
+   #:collection-max-index
+   #:collection-new-item))
 
 (defpackage #:gdid
   (:use :cl :hgetopt :gdid.model)

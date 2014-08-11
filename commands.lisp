@@ -14,8 +14,7 @@
                 (&key (collection *default-collection*))
                 (&rest content)
   (let ((collection (find-collection collection)))
-    (format t "NOT IMPL this would perform new on ~A and ~A~%"
-            collection content)))
+    (collection-new-item collection)))
 
 (define-command (com-list :cli-name "list")
                 (&key (collection *default-collection*))

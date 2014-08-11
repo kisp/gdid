@@ -41,6 +41,9 @@
 (defmethod item-index-as-string ((item item))
   (pathname-name (item-path item)))
 
+(defmethod item-index ((item item))
+  (parse-integer (item-index-as-string item)))
+
 (defmethod item-short-content ((item item))
   (with-slot-cache (item %short-content)
     (let ((content (item-content item)))
@@ -77,6 +80,14 @@
 (defun collection-root-dir (collection)
   collection)
 
+(defmethod collection-max-index (collection)
+  (reduce #'max (list-collection collection) :key #'item-index))
+
+(defun list-collection (collection &optional query)
+  (let (list)
+    (map-collection (lambda (x) (push x list)) collection query)
+    (nreverse list)))
+
 (defun map-collection (function collection &optional query)
   (let ((*default-pathname-defaults* (collection-root-dir collection)))
     (labels ((list-muse ()
@@ -112,3 +123,18 @@ For more than one result, an error is signaled and function is not called."
       (map-collection wrapper collection query)
       (when single-result
         (funcall function single-result)))))
+
+(defun format-date (stream)
+  (multiple-value-bind (sec min hr date mnth year)
+      (decode-universal-time (get-universal-time))
+    (declare (ignore sec min hr))
+    (format stream "~4,'0d-~2,'0d-~2,'0d" year mnth date)))
+
+(defun collection-new-item (collection)
+  (let ((path (merge-pathnames
+               (make-pathname :name (prin1-to-string (1+ (collection-max-index collection)))
+                              :type "muse")
+               (collection-root-dir collection))))
+    (with-open-file (out path :direction :output)
+      (format-date out)
+      (dotimes (i 2) (terpri out)))))
