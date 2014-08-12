@@ -37,12 +37,14 @@
                 (&key (collection *default-collection*)
                       multiple)
                 (query &optional file)
-  (flet ((generate (item-or-items)
-           (generate-pdf item-or-items (or file *standard-output*))))
-    (let ((collection (find-collection collection)))
-      (if multiple
-          (map-collection #'generate collection query)
-          (collection-single! #'generate collection query)))))
+  (let (items)
+    (flet ((add (item)
+             (push item items)))
+      (let ((collection (find-collection collection)))
+        (if multiple
+            (map-collection #'add collection query)
+            (collection-single! #'add collection query))))
+    (generate-pdf (nreverse items) (or file *standard-output*))))
 
 (define-command (com-edit :cli-name "edit")
                 (&key (collection *default-collection*)
