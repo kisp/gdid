@@ -130,11 +130,14 @@ For more than one result, an error is signaled and function is not called."
     (declare (ignore sec min hr))
     (format stream "~4,'0d-~2,'0d-~2,'0d" year mnth date)))
 
-(defun collection-new-item (collection)
+(defun collection-new-item (collection &optional content)
   (let ((path (merge-pathnames
                (make-pathname :name (prin1-to-string (1+ (collection-max-index collection)))
                               :type "muse")
                (collection-root-dir collection))))
     (with-open-file (out path :direction :output)
       (format-date out)
-      (dotimes (i 2) (terpri out)))))
+      (dotimes (i 2) (terpri out))
+      (when content
+        (write-string content out)
+        (fresh-line out)))))
