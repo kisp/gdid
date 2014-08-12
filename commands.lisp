@@ -37,10 +37,12 @@
                 (&key (collection *default-collection*)
                       multiple)
                 (query &optional file)
-  (flet ((pdf-item (item)
-           (generate-pdf item (or file *standard-output*))))
+  (flet ((generate (item-or-items)
+           (generate-pdf item-or-items (or file *standard-output*))))
     (let ((collection (find-collection collection)))
-      (collection-single! #'pdf-item collection query))))
+      (if multiple
+          (map-collection #'generate collection query)
+          (collection-single! #'generate collection query)))))
 
 (define-command (com-edit :cli-name "edit")
                 (&key (collection *default-collection*)
@@ -52,4 +54,6 @@
                                :search t
                                :input t :output t :error t)))
     (let ((collection (find-collection collection)))
-      (collection-single! #'edit-item collection query))))
+      (if multiple
+          (map-collection #'edit-item collection query)
+          (collection-single! #'edit-item collection query)))))

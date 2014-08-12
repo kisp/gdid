@@ -20,5 +20,5 @@
    #:collection-name))
 
 (defpackage #:gdid
-  (:use :cl :hgetopt :gdid.model)
+  (:use :cl :hgetopt :gdid.model :alexandria)
   (:export #:gdid))
