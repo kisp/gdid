@@ -96,7 +96,8 @@
 gdid [-c] list [<query>]
 gdid [-cm] pdf <query> [<file>]
 gdid [-cm] edit <query>
-gdid help")
+gdid help | -h | --help
+gdid --version")
 
 (defun show-usage (stream)
   (write-line *usage* stream)
@@ -115,14 +116,32 @@ gdid help")
                      "Collection [default: GDID]")
         (make-option '(#\m) '("multiple")
                      (no-arg (lambda () '(:multiple t)))
-                     "Allow batch processing of multiple query matches")))
+                     "Allow batch processing of multiple query matches")
+        (make-option '(#\h) '("help")
+                     (no-arg (lambda () '(:help t)))
+                     "Show this help")
+        (make-option nil '("version")
+                     (no-arg (lambda () '(:version t)))
+                     "Show version")))
+
+(defun get-opt-with-help-and-version (ordering opt-descr args*)
+  (multiple-value-bind (keyword-args rest-args errs)
+      (get-opt-append ordering opt-descr args*)
+    (cond
+      ((and (getf keyword-args :help)
+            (null errs))
+       (values nil '("help") nil))
+      ((and (getf keyword-args :version)
+            (null errs))
+       (values nil '("version") nil))
+      (t (values keyword-args rest-args errs)))))
 
 (defun parse-args (args)
   (cond
     ((null args) (args-error))
     (t
      (multiple-value-bind (keyword-args rest-args errs)
-         (get-opt-append :permute *options* args)
+         (get-opt-with-help-and-version :permute *options* args)
        (cond
          (errs (args-error errs))
          ((null rest-args) (args-error))

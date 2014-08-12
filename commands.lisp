@@ -10,6 +10,12 @@
   (write-string (usage-info "Options:" *options*)
                 *error-output*))
 
+(define-command (com-version :cli-name "version")
+                ()
+                ()
+  (format t "gdid ~A~%"
+          (asdf:component-version (asdf:find-system "gdid"))))
+
 (define-command (com-new :cli-name "new")
                 (&key (collection *default-collection*))
                 (&rest content)

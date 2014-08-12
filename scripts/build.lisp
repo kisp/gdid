@@ -15,4 +15,5 @@
 (sb-ext:save-lisp-and-die "gdid"
                           :toplevel #'gdid::gdid
                           :executable t
+                          :save-runtime-options t
                           :compression nil)
