@@ -140,4 +140,5 @@ For more than one result, an error is signaled and function is not called."
       (dotimes (i 2) (terpri out))
       (when content
         (write-string content out)
-        (fresh-line out)))))
+        (fresh-line out)))
+    path))

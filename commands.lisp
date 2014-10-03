@@ -20,9 +20,12 @@
                 (&key (collection *default-collection*))
                 (&rest content)
   (let ((collection (find-collection collection)))
-    (collection-new-item collection
-                         (when content
-                           (format nil "~{~A~^ ~}" content)))))
+    (princ
+     (collection-new-item
+      collection
+      (when content
+        (format nil "~{~A~^ ~}" content))))
+    (terpri)))
 
 (define-command (com-list :cli-name "list")
                 (&key (collection *default-collection*))
