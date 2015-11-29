@@ -3,9 +3,13 @@
 (require 'asdf)
 
 (if (sb-ext:posix-getenv "PORTAGE_BUILD_USER")
-    (asdf:initialize-source-registry
-     `(:source-registry (:directory (,(uiop:getcwd) "asd"))
-       :ignore-inherited-configuration))
+    (progn
+      (asdf:initialize-source-registry
+       `(:source-registry (:directory (,(uiop:getcwd) "asd"))
+         :ignore-inherited-configuration))
+      (asdf:initialize-output-translations
+       `(:output-translations :disable-cache
+         :ignore-inherited-configuration)))
     (load (merge-pathnames "quicklisp/setup.lisp" (user-homedir-pathname))))
 
 (push :standalone *features*)
