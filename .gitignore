@@ -3,4 +3,4 @@ gdid
 Makefile
 arch/*.tgz
 arch/src
-arch/*.pkg.tar.xz
+arch/*.pkg.tar.*
