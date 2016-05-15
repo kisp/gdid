@@ -1,3 +1,5 @@
+DESTDIR=/usr/local/
+
 qlot: qlot-build cucumber
 bundle: bundle-build cucumber
 
@@ -20,5 +22,5 @@ cucumber:
 	bundle exec cucumber
 
 install:
-	$(MKDIR_P) "$(DESTDIR)$(bindir)"
-	install -m 755 gdid "$(DESTDIR)$(bindir)"
+	mkdir -p "$(DESTDIR)bin"
+	install -m 755 gdid "$(DESTDIR)bin"
