@@ -18,4 +18,4 @@ install:
   - bundle install
 
 script:
-  - make -f travis/Makefile $TARGET
+  - make $TARGET
