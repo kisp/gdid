@@ -1,0 +1,16 @@
+language: common-lisp
+sudo: required
+
+env:
+  matrix:
+    - LISP=sbcl-bin
+
+install:
+  - curl -L https://raw.githubusercontent.com/snmsts/roswell/master/scripts/install-for-ci.sh | sh
+
+before_script:
+  - ros --version
+  - ros config
+
+script:
+  - ros -s uiop -e '(uiop:quit 1)'
