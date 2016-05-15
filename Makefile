@@ -1,5 +1,7 @@
 DESTDIR=/usr/local/
 
+default: bundle-build
+
 qlot: qlot-build cucumber
 bundle: bundle-build cucumber
 
