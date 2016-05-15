@@ -18,4 +18,6 @@ install:
   - bundle install
 
 script:
-  - make $TARGET
+  - ./configure
+  - make $TARGET-build
+  - make cucumber

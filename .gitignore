@@ -6,3 +6,4 @@ arch/*.pkg.tar.*
 quicklisp/
 Gemfile.lock
 bundle-libs
+Makefile
