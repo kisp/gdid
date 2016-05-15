@@ -1,0 +1,10 @@
+("quicklisp" .
+ (:class qlot.source.ql:source-ql-all
+  :initargs (:project-name "quicklisp" :%version :latest)
+  :version "2016-04-21"))
+("hgetopt" .
+ (:class qlot.source.http:source-http
+  :initargs (:project-name "hgetopt" :url "http://pauldist.kisp.in/archive/hgetopt-0.0.3.tgz" :archive-md5 "39c8398919bafa81d39dc51026ee7d31")
+  :version "http-39c8398919bafa81d39dc51026ee7d31"
+  :url "http://pauldist.kisp.in/archive/hgetopt-0.0.3.tgz"
+  :archive-md5 "39c8398919bafa81d39dc51026ee7d31"))
