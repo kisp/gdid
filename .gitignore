@@ -1,6 +1,5 @@
 gdid
 *.fasl
-Makefile
 arch/*.tgz
 arch/src
 arch/*.pkg.tar.*
