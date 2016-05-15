@@ -7,12 +7,15 @@ env:
     - LISP=sbcl-bin TARGET=bundle
 
 install:
-  - curl -L https://raw.githubusercontent.com/snmsts/roswell/master/scripts/install-for-ci.sh | sh
+  - case "$TARGET" in 
+      qlot)
+        curl -L https://raw.githubusercontent.com/snmsts/roswell/master/scripts/install-for-ci.sh | sh
+        ;;
+      bundle)
+        sudo apt-get install sbcl
+        ;;
+    esac
   - bundle install
-
-before_script:
-  - ros --version
-  - ros config
 
 script:
   - make -f travis/Makefile $TARGET
