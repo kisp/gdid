@@ -7,6 +7,8 @@ env:
 
 install:
   - curl -L https://raw.githubusercontent.com/snmsts/roswell/master/scripts/install-for-ci.sh | sh
+  - bundle install
+
 
 before_script:
   - ros --version
@@ -19,4 +21,4 @@ script:
   - ./gdid --version
   - mkdir bin
   - mv gdid bin
-  - cucumber
+  - bundle exec cucumber
