@@ -164,3 +164,10 @@ gdid --version")
       (args-error (args-error)
         (handle-args-error args-error)
         (quit 1)))))
+
+(defun dump ()
+  (sb-ext:save-lisp-and-die "gdid"
+                          :toplevel #'gdid::gdid
+                          :executable t
+                          :save-runtime-options t
+                          :compression nil))

@@ -13,4 +13,5 @@ before_script:
   - ros config
 
 script:
-  - ros -l .sbcl-disable-debugger.lisp -s uiop -e '(/ 1 1)'
+  - ros -l .sbcl-disable-debugger.lisp -s qlot -e '(push :standalone *features*)' -e '(qlot:quickload :gdid)' -e '(gdid::dump)'
+  - ./gdid --version
