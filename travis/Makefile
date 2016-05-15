@@ -11,7 +11,7 @@ qlot:
 bundle:
 	sbcl --version
 	tar xfj bundle-libs.tar.bz2
-	sbcl --no-userinit --non-interactive --load .sbcl-disable-debugger.lisp --load bundle-libs/bundle.lisp --load gdid.asd --eval '(push :standalone *features*)' --eval '(asdf:load-system :gdid)' --eval '(gdid::dump)'
+	sbcl --no-userinit --non-interactive --load .sbcl-disable-debugger.lisp --load bundle-libs/bundle.lisp --load gdid.asd --eval '(push :standalone *features*)' --eval '(setq *compile-print* nil)' --eval '(without-warnings (asdf:load-system :gdid))' --eval '(gdid::dump)'
 	mkdir -p bin
 	mv gdid bin
 	bundle exec cucumber
