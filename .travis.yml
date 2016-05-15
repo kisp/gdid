@@ -13,4 +13,4 @@ before_script:
   - ros config
 
 script:
-  - ros -l .sbcl-disable-debugger.lisp -s uiop -e '(/ 1 0)'
+  - ros -l .sbcl-disable-debugger.lisp -s uiop -e '(/ 1 1)'
