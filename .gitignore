@@ -5,3 +5,4 @@ arch/*.tgz
 arch/src
 arch/*.pkg.tar.*
 quicklisp/
+Gemfile.lock
