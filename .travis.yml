@@ -13,4 +13,4 @@ before_script:
   - ros config
 
 script:
-  - ros -s uiop -e '(uiop:quit 1)'
+  - ros -s uiop -e '(/ 1 0)'
