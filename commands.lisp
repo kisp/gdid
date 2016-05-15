@@ -14,7 +14,7 @@
                 ()
                 ()
   (format t "gdid ~A~%"
-          (asdf:component-version (asdf:find-system "gdid"))))
+          #.(asdf:component-version (asdf:find-system "gdid"))))
 
 (define-command (com-new :cli-name "new")
                 (&key (collection *default-collection*))
