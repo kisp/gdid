@@ -3,13 +3,13 @@ sudo: required
 
 env:
   matrix:
-    - LISP=sbcl/1.3.10 TARGET=qlot
+    - LISP=sbcl-bin TARGET=qlot
     - LISP=sbcl-bin TARGET=bundle
 
 install:
   - case "$TARGET" in 
       qlot)
-        curl -L https://raw.githubusercontent.com/snmsts/roswell/master/scripts/install-for-ci.sh | sh
+        curl -L https://raw.githubusercontent.com/roswell/roswell/release/scripts/install-for-ci.sh | sh
         ;;
       bundle)
         sudo apt-get install sbcl
