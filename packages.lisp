@@ -3,7 +3,6 @@
 (defpackage #:gdid.model
   (:use :cl :alexandria)
   (:export
-   #:*root-dir*
    #:find-collection
    #:map-collection
    #:collection-single!
