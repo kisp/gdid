@@ -11,7 +11,7 @@
   :author "Kilian Sprotte <kilian.sprotte@gmail.com>"
   :licence "BSD-style"
   :depends-on (:alexandria :hgetopt :cl-ppcre
-                           :cl-pdf :cl-typesetting)
+                           :cl-pdf :cl-typesetting :sb-posix)
   :serial t
   :components ((:file "packages")
                (:file "model")

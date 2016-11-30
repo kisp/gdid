@@ -3,8 +3,7 @@
 (in-package #:gdid.model)
 
 (defun root-dir ()
-  (merge-pathnames #p".emacs.d/var/muse/"
-                   (user-homedir-pathname)))
+  (probe-file (or (sb-posix:getenv "GDID_ROOT_DIR") ".")))
 
 (defun relative-directory (name)
   (make-pathname :directory `(:relative ,name)))
