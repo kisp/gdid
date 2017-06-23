@@ -16,15 +16,15 @@ install:
         sudo apt-get install sbcl
         ;;
     esac
-  - bundle install
+#  - bundle install
 
 script:
   - ./configure
   - make $TARGET-build
-  - make cucumber
+#  - make cucumber
 
 after_success:
-  - touch foo.deb
+  - echo foo >foo.deb
 
 deploy:
   provider: releases
