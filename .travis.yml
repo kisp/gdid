@@ -24,13 +24,13 @@ script:
 #  - make cucumber
 
 after_success:
-  - echo foo >foo.deb
+  - sudo checkinstall --nodoc -y --pkgversion=$TRAVIS_TAG
 
 deploy:
   provider: releases
   api_key:
     secure: mAWusxC+pWiw7zthH2VDyGvhqDeNP+Rr5MQOzAHWw+VEFgVsd2Pt5x1a1IPyUIwEb26EcQO2Z/8pVeAY1ZiDLFZ9o8zP+j0DJ8Ahu9CX4qk1OzC80X5/jI7owZwqZP8qQPEL2sstw4j8kHA5NkIp0x4Kvx37gArNY9aUcNZIT019++BNotXtrwDG2/qxm/202FkmySRLEdc9SR4/PXYlnRdgPPHXvz1KOa5K/whDvzkqwptNxpEjBKsXDXq0nvAfWRGw785oN7QMu38ZvCa2dj7jfO8PWVwA83tGPXAgibiLomaOU0vVofupa032Y8zvbvulmG6WayKwlbm29SWe6nx6o7tcxdp2BV1ZzpBVzmmUXPAJTUE/HhelpJg7mdJdFiCjWCrjhjidC490ifmpvtq2+U0elg9/rmTp9gsb4LUzGPKncw0e5FqkdTuR8k+XAxElE65fa67iBgxy25MNZZ6cYvZHSW8EUFVmynaDnJilVPw/HPdE5UKDaq5S5ITZ2BHYIeya19Pd7PeBC8C2PJZF5TntBBTzHbddHirSTvsuoL54wkHleSMEiVoyJi2CAPe9uhxzKKB0d/qhjiegGnLcsD0uNuEfJrjAuGrfzqH/ydmNx5QU4+OiB2tGYso+3W1QSQ6MLl3O6wkt3j9NQEXErZUseaEhJDeYZGYinUs=
-  file: foo.deb
+  file: gdid_${TRAVIS_TAG}-1_amd64.deb
   skip_cleanup: true
   on:
     tags: true
