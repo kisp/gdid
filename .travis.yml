@@ -19,7 +19,7 @@ install:
 #  - bundle install
 
 script:
-  - ./configure
+  - ./configure --prefix=/usr
   - make $TARGET-build
 #  - make cucumber
 
