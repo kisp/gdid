@@ -3,7 +3,7 @@ sudo: required
 
 env:
   matrix:
-#    - LISP=sbcl-bin TARGET=qlot
+    - LISP=sbcl-bin TARGET=qlot
     - LISP=sbcl-bin TARGET=bundle
 
 install:
@@ -16,12 +16,12 @@ install:
         sudo apt-get install sbcl
         ;;
     esac
-#  - bundle install
+  - bundle install
 
 script:
   - ./configure --prefix=/usr
   - make $TARGET-build
-#  - make cucumber
+  - make cucumber
 
 after_success:
   - sudo checkinstall --nodoc -y --pkgversion=$TRAVIS_TAG
