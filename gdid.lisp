@@ -167,7 +167,7 @@ gdid --version")
 
 (defun dump ()
   (asdf:clear-configuration)
-  (asdf/find-system:clear-defined-systems)
+  (asdf/system-registry:clear-registered-systems)
   (sb-ext:save-lisp-and-die "gdid"
                           :toplevel #'gdid::gdid
                           :executable t
