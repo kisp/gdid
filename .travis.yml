@@ -12,12 +12,10 @@ install:
   - sudo apt-get install checkinstall
   - case "$TARGET" in 
       qlot)
-        curl -L https://raw.githubusercontent.com/roswell/roswell/release/scripts/install-for-ci.sh | sh
-        ros --eval "(require 'asdf)" --eval '(format t "asdf-version: ~A~%" (asdf:asdf-version))'
+        curl -L https://raw.githubusercontent.com/roswell/roswell/release/scripts/install-for-ci.sh | sh; ros --eval "(require 'asdf)" --eval '(format t "asdf-version: ~A~%" (asdf:asdf-version))'
         ;;
       bundle)
-        sudo apt-get install sbcl
-        sbcl --non-interactive --eval "(require 'asdf)" --eval '(format t "~%asdf-version: ~A~%" (asdf:asdf-version))'
+        sudo apt-get install sbcl; sbcl --non-interactive --eval "(require 'asdf)" --eval '(format t "~%asdf-version: ~A~%" (asdf:asdf-version))'
         ;;
     esac
   - bundle install
