@@ -1,6 +1,8 @@
 language: common-lisp
 sudo: required
 
+dist: bionic
+
 env:
   matrix:
     - LISP=sbcl-bin TARGET=qlot
