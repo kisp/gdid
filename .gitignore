@@ -7,3 +7,5 @@ quicklisp/
 Gemfile.lock
 bundle-libs
 Makefile
+result
+result-*
