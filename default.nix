@@ -26,7 +26,6 @@ let
       ${sbcl'}/bin/sbcl --no-userinit --non-interactive \
         --load .sbcl-disable-debugger.lisp \
         --eval '(load (sb-ext:posix-getenv "ASDF"))' \
-        --eval '(push :standalone *features*)' \
         --eval '(asdf:load-system :gdid)' \
         --eval '(gdid::dump)'
     '';

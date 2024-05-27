@@ -64,13 +64,14 @@
 (defun quit (code)
   (error 'quit :code code))
 
+(defvar *standalone* nil)
+
 (defun call-with-quit-handler (thunk)
-  #-standalone
-  (funcall thunk)
-  #+standalone
-  (handler-case
-      (funcall thunk)
-    (quit (c) (sb-ext:exit :code (quit-code c)))))
+  (if *standalone*
+      (handler-case
+	  (funcall thunk)
+	(quit (c) (sb-ext:exit :code (quit-code c))))
+      (funcall thunk)))
 
 (defmacro with-quit-handler (&body body)
   `(call-with-quit-handler (lambda () ,@body)))
@@ -169,6 +170,7 @@ gdid --version")
 (defun dump ()
   (asdf:clear-configuration)
   (asdf/system-registry:clear-registered-systems)
+  (setq *standalone* t)
   (sb-ext:save-lisp-and-die "gdid"
                           :toplevel #'gdid::gdid
                           :executable t
