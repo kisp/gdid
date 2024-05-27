@@ -64,15 +64,16 @@
 (defun quit (code)
   (error 'quit :code code))
 
-#-standalone
-(defmacro with-quit-handler (&body body)
-  `(progn ,@body))
+(defun call-with-quit-handler (thunk)
+  #-standalone
+  (funcall thunk)
+  #+standalone
+  (handler-case
+      (funcall thunk)
+    (quit (c) (sb-ext:exit :code (quit-code c)))))
 
-#+standalone
 (defmacro with-quit-handler (&body body)
-  `(handler-case
-       (progn ,@body)
-     (quit (c) (sb-ext:exit :code (quit-code c)))))
+  `(call-with-quit-handler (lambda () ,@body)))
 
 (define-condition args-error (simple-error)
   ()
