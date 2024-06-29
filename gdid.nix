@@ -20,7 +20,7 @@ let
 in
 sbcl.buildASDFSystem {
   pname = "gdid";
-  version = "0.0.16";
+  version = "0.0.17";
   src =
     let
       patterns = ''

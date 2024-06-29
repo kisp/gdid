@@ -6,7 +6,7 @@ Feature: informational
   Scenario: print version
      When I run `gdid --version`
      Then the exit status should be 0
-     And the output should contain "gdid 0.0.16"
+     And the output should contain "gdid 0.0.17"
 
   Scenario: print short usage
     When I run `gdid`
